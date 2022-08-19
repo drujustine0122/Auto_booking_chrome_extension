@@ -1,0 +1,202 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+#main-content {
+    width: 240px;
+    padding: 10px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: center;
+}
+
+#current_time {
+    font-size: 20px;
+    text-align: center;
+}
+
+.content-body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.content-body .facility {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .facility select{
+    padding: 5px;
+    width: 163px;
+}
+
+.content-body .facility label{
+    font-size: 15px;
+}
+
+.content-body .date {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .date label{
+    font-size: 15px;
+}
+
+
+.content-body .date input {
+    padding: 5px;
+    width: 150px;
+}
+
+.content-body .players {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+.content-body .players .player-block {
+    width: 15%;
+    padding: 10px;
+    background-image: -webkit-linear-gradient(top,#428bca 0,#2d6ca2 100%);
+    background-image: linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);
+    -webkit-box-shadow: 0 2px 0 #1d4c72, 0 2px 5px rgb(0 0 0 / 35%);
+    -moz-box-shadow: 0 2px 0 #1d4c72,0 2px 5px rgba(0,0,0,.35);
+    box-shadow: 0 2px 0 #1d4c72,0 2px 5pxrgba(0,0,0,.35);
+    background-repeat: repeat-x;
+    border: #2b669a 1px solid;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    
+}
+
+.content-body .players .player-block.active {
+    background-color: #204d73;
+    background-image: none;
+    border-color: #2b669a;
+    padding-bottom: 8px;
+    -webkit-box-shadow: 0 2px 0 #184872, inset 0 2px 15px rgb(0 0 0 / 50%);
+    -moz-box-shadow: 0 2px 0 #184872,inset 0 2px 15px rgba(0,0,0,.5);
+    box-shadow: 0 2px 0 #184872, inset 0 2px 15px rgb(0 0 0 / 50%);
+}
+
+.content-body .players .player-block:hover {
+    border-color: #1b2f54;
+}
+
+.content-body .time-slot {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .time-slot label{
+    font-size: 15px;
+}
+
+.content-body .time-slot .time-slot-bar {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.content-body .time-slot input {
+    padding: 5px;
+    width: 85px;
+}
+
+.content-body .time-slot select {
+    padding: 5px;
+    width: 50px;
+}
+
+.content-body .email {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .email label{
+    font-size: 15px;
+}
+
+
+.content-body .email input {
+    padding: 5px;
+    width: 150px;
+}
+
+.content-body .holes {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .holes label{
+    font-size: 15px;
+}
+
+
+.content-body .holes select {
+    padding: 5px;
+    width: 150px;
+}
+
+.content-body .password {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content-body .password label{
+    font-size: 15px;
+}
+
+
+.content-body .password input {
+    padding: 5px;
+    width: 150px;
+}
+
+.content-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;    
+    flex-direction: row;
+}
+
+.content-footer button {
+    width: 45%;
+    padding: 5px;
+    background-image: -webkit-linear-gradient(top,#41c660 0,#2ca049 100%);
+    background-image: linear-gradient(to bottom,#41c660 0,#2ca049 100%);
+    background-repeat: repeat-x;
+    border-color: #22843b;
+    -webkit-box-shadow: 0 2px 0 #1a682d, 0 2px 5px rgb(0 0 0 / 35%);
+    -moz-box-shadow: 0 2px 0 #1a682d,0 2px 5px rgba(0,0,0,.35);
+    box-shadow: 0 2px 0 #1a682d, 0 2px 5px rgb(0 0 0 / 35%);
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
