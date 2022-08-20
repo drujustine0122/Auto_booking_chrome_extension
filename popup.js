@@ -9,6 +9,7 @@ var animationTimer;
 var currentClockImage;
 var port;
 
+
 function loadAllImages() {
   var loadCount = 0;
   var img = new Image();
@@ -260,6 +261,76 @@ function load() {
   $('password').value = password;
   $('password').addEventListener('change', function(evt) {
     localStorage['password'] = $('password').value;
+  }, false);
+
+
+  $('login').addEventListener('mouseup', async function (evt) {
+    var username = localStorage['email'] || DEFAULT_EMAIL;
+    var password = localStorage['password'] || DEFAULT_PASSWORD;
+    var api_key = API_KEY;
+    var course_id = COURSE_ID;
+    // let xhr = new XMLHttpRequest();
+    
+    // const response = await fetch('https://foreupsoftware.com/index.php/api/booking/users/login', {
+    //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //   mode: 'no-cors', // no-cors, *cors, same-origin
+    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //   // credentials: 'same-origin', // include, *same-origin, omit
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   redirect: 'follow', // manual, *follow, error
+    //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    //   body: JSON.stringify({
+    //     "username": username,
+    //     "password": password,
+    //     "api_key": api_key,
+    //     "course_id": course_id
+    //   }) // body data type must match "Content-Type" header
+    // }).then(function (respnose) {
+    //   console.log(respnose);
+    // });
+
+    // xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
+    // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    // xhr.setRequestHeader("Accept", "application/json");
+    // xhr.setRequestHeader("Content-Type", "application/json");
+
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === 4) {
+    //     console.log(xhr.status);
+    //     console.log(xhr.responseText);
+    //   }
+    // };
+
+    // let data = `{
+    //   "username": `+username+`,
+    //   "password": `+password+`,
+    //   "api_key": `+api_key+`,
+    //   "course_id": `+course_id+`
+    // }`;
+
+    // // console.log(data);
+    // xhr.send(data);
+
+    var data = "username=pbateman22%40hotmail.com&password=Upwork9&api_key=no_limits&course_id=19765";
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+  xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
+  // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Cookie", "PHPSESSID=356ddkpc75li83ldntkg9j1g8d");
+
+  xhr.send(data);
   }, false);
 
  }
