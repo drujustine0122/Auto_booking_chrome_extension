@@ -13,7 +13,7 @@ var port;
 function loadAllImages() {
   var loadCount = 0;
   var img = new Image();
-  img.onload = function() {
+  img.onload = function () {
     blankClockImage = img;
     currentClockImage = blankClockImage;
     drawClock();
@@ -99,7 +99,7 @@ function drawClock(hh, mm, ss) {
 function updateCurrentTime() {
   var date = new Date();
   var offset = -300; //Timezone offset for EST in minutes.
-  var estDate = new Date(date.getTime() + offset*60*1000);
+  var estDate = new Date(date.getTime() + offset * 60 * 1000);
   var hh = estDate.getUTCHours();
   var mm = estDate.getUTCMinutes();
   var ss = estDate.getUTCSeconds();
@@ -131,11 +131,11 @@ function updateCurrentTime() {
 
 
 function addOutlineStyleListeners() {
-  document.addEventListener('click', function(evt) {
+  document.addEventListener('click', function (evt) {
     document.body.classList.add('nooutline');
     return true;
   }, true);
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', function (evt) {
     document.body.classList.remove('nooutline');
     return true;
   }, true);
@@ -144,7 +144,7 @@ function addOutlineStyleListeners() {
 function load() {
   try {
     port = chrome.runtime.connect();
-    port.onMessage.addListener(function(msg) {
+    port.onMessage.addListener(function (msg) {
       if (msg.cmd == 'anim') {
         displayAlarmAnimation();
       }
@@ -166,7 +166,7 @@ function load() {
     }
 
     timeElement.valueAsNumber =
-        timeElement.valueAsNumber % (12 * 60 * 60 * 1000);
+      timeElement.valueAsNumber % (12 * 60 * 60 * 1000);
     if (timeElement.valueAsNumber < (1 * 60 * 60 * 1000))
       timeElement.valueAsNumber += (12 * 60 * 60 * 1000);
     return true;
@@ -176,7 +176,7 @@ function load() {
 
   var a1_tt = localStorage['a1_tt'] || DEFAULT_A1_TT;
   $('a1_tt').value = a1_tt;
-  $('a1_tt').addEventListener('input', function(evt) {
+  $('a1_tt').addEventListener('input', function (evt) {
     if (!updateTime($('a1_tt'))) {
       evt.stopPropagation();
       return false;
@@ -184,9 +184,9 @@ function load() {
     localStorage['a1_tt'] = $('a1_tt').value;
     return true;
   }, false);
-  $('a1_tt').addEventListener('change', function(evt) {
+  $('a1_tt').addEventListener('change', function (evt) {
     if ($('a1_tt').value.length == 4 &&
-        parseTime('0' + $('a1_tt').value)) {
+      parseTime('0' + $('a1_tt').value)) {
       $('a1_tt').value = '0' + $('a1_tt').value;
     }
     if (!updateTime($('a1_tt'))) {
@@ -199,7 +199,7 @@ function load() {
 
   var a1_ampm = localStorage['a1_ampm'] || DEFAULT_A1_AMPM;
   $('a1_ampm').selectedIndex = a1_ampm;
-  $('a1_ampm').addEventListener('change', function(evt) {
+  $('a1_ampm').addEventListener('change', function (evt) {
     localStorage['a1_ampm'] = $('a1_ampm').selectedIndex;
   }, false);
 
@@ -209,37 +209,37 @@ function load() {
   var facility = localStorage['facility'] || DEFAULT_FACILITY;
   $('facility').value = facility;
 
-  $('facility').addEventListener('change', function(evt) {
+  $('facility').addEventListener('change', function (evt) {
     localStorage['facility'] = $('facility').value;
   }, false);
-  
-  var player = localStorage['player'] || DEFAULT_PLAYER;
-  $('player'+player).classList.add("active");
 
-  $('player1').addEventListener('click', function(evt) {
+  var player = localStorage['player'] || DEFAULT_PLAYER;
+  $('player' + player).classList.add("active");
+
+  $('player1').addEventListener('click', function (evt) {
     var player_num = localStorage['player'] || DEFAULT_PLAYER;
-    $('player'+player_num).classList.remove("active");
+    $('player' + player_num).classList.remove("active");
     localStorage['player'] = 1;
     $('player1').classList.add("active");
   }, false);
-  
-  $('player2').addEventListener('click', function(evt) {
+
+  $('player2').addEventListener('click', function (evt) {
     var player_num = localStorage['player'] || DEFAULT_PLAYER;
-    $('player'+player_num).classList.remove("active");
+    $('player' + player_num).classList.remove("active");
     localStorage['player'] = 2;
     $('player2').classList.add("active");
   }, false);
 
-  $('player3').addEventListener('click', function(evt) {
+  $('player3').addEventListener('click', function (evt) {
     var player_num = localStorage['player'] || DEFAULT_PLAYER;
-    $('player'+player_num).classList.remove("active");
+    $('player' + player_num).classList.remove("active");
     localStorage['player'] = 3;
     $('player3').classList.add("active");
   }, false);
 
-  $('player4').addEventListener('click', function(evt) {
+  $('player4').addEventListener('click', function (evt) {
     var player_num = localStorage['player'] || DEFAULT_PLAYER;
-    $('player'+player_num).classList.remove("active");
+    $('player' + player_num).classList.remove("active");
     localStorage['player'] = 4;
     $('player4').classList.add("active");
   }, false);
@@ -247,19 +247,19 @@ function load() {
 
   var holes = localStorage['holes'] || DEFAULT_HOLES;
   $('holes').value = holes;
-  $('holes').addEventListener('change', function(evt) {
+  $('holes').addEventListener('change', function (evt) {
     localStorage['holes'] = $('holes').value;
   }, false);
 
   var email = localStorage['email'] || DEFAULT_EMAIL;
   $('email').value = email;
-  $('email').addEventListener('change', function(evt) {
+  $('email').addEventListener('change', function (evt) {
     localStorage['email'] = $('email').value;
   }, false);
 
   var password = localStorage['password'] || DEFAULT_PASSWORD;
   $('password').value = password;
-  $('password').addEventListener('change', function(evt) {
+  $('password').addEventListener('change', function (evt) {
     localStorage['password'] = $('password').value;
   }, false);
 
@@ -270,15 +270,16 @@ function load() {
     var api_key = API_KEY;
     var course_id = COURSE_ID;
     // let xhr = new XMLHttpRequest();
-    
+
     // const response = await fetch('https://foreupsoftware.com/index.php/api/booking/users/login', {
     //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
     //   mode: 'no-cors', // no-cors, *cors, same-origin
     //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     //   // credentials: 'same-origin', // include, *same-origin, omit
     //   headers: {
-    //     'Content-Type': 'application/json'
-    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //     // 'Content-Type': 'application/json'
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     "Cookie": "PHPSESSID=356ddkpc75li83ldntkg9j1g8d"
     //   },
     //   redirect: 'follow', // manual, *follow, error
     //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -288,9 +289,33 @@ function load() {
     //     "api_key": api_key,
     //     "course_id": course_id
     //   }) // body data type must match "Content-Type" header
-    // }).then(function (respnose) {
-    //   console.log(respnose);
     // });
+
+    var details = {
+      "username": username,
+      "password": password,
+      "api_key": api_key,
+      "course_id": course_id
+    };
+  
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+  
+  fetch('https://foreupsoftware.com/index.php/api/booking/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: formBody
+  }).then(res=> {
+    console.log(res)
+  })
+
 
     // xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
     // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -314,25 +339,25 @@ function load() {
     // // console.log(data);
     // xhr.send(data);
 
-    var data = "username=pbateman22%40hotmail.com&password=Upwork9&api_key=no_limits&course_id=19765";
+    // var data = "username=pbateman22%40hotmail.com&password=Upwork9&api_key=no_limits&course_id=19765";
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    // var xhr = new XMLHttpRequest();
+    // xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function() {
-      if(this.readyState === 4) {
-        console.log(this.responseText);
-      }
-    });
+    // xhr.addEventListener("readystatechange", function () {
+    //   if (this.readyState === 4) {
+    //     console.log(this.responseText);
+    //   }
+    // });
 
-  xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
-  // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.setRequestHeader("Cookie", "PHPSESSID=356ddkpc75li83ldntkg9j1g8d");
+    // xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
+    // // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // xhr.setRequestHeader("Cookie", "PHPSESSID=356ddkpc75li83ldntkg9j1g8d");
 
-  xhr.send(data);
+    // xhr.send(data);
   }, false);
 
- }
+}
 
 document.addEventListener('DOMContentLoaded', load);
