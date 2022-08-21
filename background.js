@@ -14,24 +14,23 @@ function login() {
   var password = localStorage['password'] || DEFAULT_PASSWORD;
   var api_key = API_KEY;
   var course_id = COURSE_ID;
-  let xhr = new XMLHttpRequest();
+
+  var data = "username=pbateman22%40hotmail.com&password=Upwork9&api_key=no_limits&course_id=19765";
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this.responseText);
+    }
+  });
+
   xhr.open("POST", "https://foreupsoftware.com/index.php/api/booking/users/login");
-  xhr.setRequestHeader("Accept", "application/json");
-  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Cookie", "PHPSESSID=356ddkpc75li83ldntkg9j1g8d");
 
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      console.log(xhr.responseText);
-    }};
-
-  let data = `{
-    "username": `+username+`,
-    "password": `+password+`,
-    "api_key": `+api_key+`,
-    "course_id": `+course_id+`
-  }`;
-  console.log(data);
   xhr.send(data);
 }
 
@@ -41,7 +40,7 @@ function booking() {
 
 function setLoginTimer(timeout) {
   window.setTimeout(() => {
-    setLoginIntervals();  
+    setLoginIntervals();
     login();
   }, timeout);
 }
@@ -63,9 +62,9 @@ function setBookingIntervals() {
 
 function initBackground() {
 
-  chrome.runtime.onConnect.addListener(function(popupPort) {
+  chrome.runtime.onConnect.addListener(function (popupPort) {
     port = popupPort;
-    port.onDisconnect.addListener(function() {
+    port.onDisconnect.addListener(function () {
       port = null;
     });
   });
@@ -74,7 +73,7 @@ function initBackground() {
     login();
     var date = new Date();
     var offset = -300; //Timezone offset for EST in minutes.
-    var estDate = new Date(date.getTime() + offset*60*1000);
+    var estDate = new Date(date.getTime() + offset * 60 * 1000);
     var hh = estDate.getUTCHours();
     var mm = estDate.getUTCMinutes();
     var ss = estDate.getUTCSeconds();
